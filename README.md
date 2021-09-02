@@ -82,7 +82,7 @@ Now it's time to make sure your SAP ASE database in SAP HANA Cloud is ready to r
     create database <DATABASE_NAME> on datadev11="1G" log on logdev11="50M" for load encrypt with <KEY_NAME>
     ```
 
-    > ### Important
+    > #### Important
     >
     > It is very important to create the database **with the encrypted key**. If you don't, the database will still be created but you won't be able to load the database later.
 
