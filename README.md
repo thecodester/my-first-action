@@ -31,7 +31,7 @@ Migrating an SAP ASE database from on-premise to the cloud requires a bit of pre
 
 This tutorial will cover the steps (3 to 5) involving the migration. You can learn about the [first](hana-cloud-ase-migration-1) and the [second](hana-cloud-ase-migration-2) step by referring to the previous tutorials.
 
-### Create the SAP HANA Cloud, SAP ASE database instance
+### Step 1 - Create the SAP HANA Cloud, SAP ASE database instance
 
 <!-- border --> 
 Picture: 
@@ -82,6 +82,21 @@ Now it's time to make sure your SAP ASE database in SAP HANA Cloud is ready to r
     create database <DATABASE_NAME> on datadev11="1G" log on logdev11="50M" for load encrypt with <KEY_NAME>
     ```
 
+    > ### Important
+    >
+    > It is very important to create the database **with the encrypted key**. If you don't, the database will still be created but you won't be able to load the database later.
+
+    ```Shell/Bash
+    create database <DATABASE_NAME> on datadev11="1G" log on logdev11="50M" for load encrypt with <KEY_NAME>
+    ```
+
+    > IMPORTANT:
+    >
+    > It is very important to create the database **with the encrypted key**. If you don't, the database will still be created but you won't be able to load the database later.
+
+    ```Shell/Bash
+    create database <DATABASE_NAME> on datadev11="1G" log on logdev11="50M" for load encrypt with <KEY_NAME>
+    ```
 
 ### Step 2 - Copy the encrypted backup to MS Azure using azcopy
 
