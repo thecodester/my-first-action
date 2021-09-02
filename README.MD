@@ -34,7 +34,11 @@ This tutorial will cover the steps (3 to 5) involving the migration. You can lea
 ### Create the SAP HANA Cloud, SAP ASE database instance
 
 <!-- border --> 
-Picture: ![My image](pics/mypicture.png)
+Picture: 
+
+![My image](pics/mypicture.png)
+
+>Above should be bordered.
 
 Now it's time to make sure your SAP ASE database in SAP HANA Cloud is ready to receive the data from your on-premise SAP ASE database. To ensure this, follow these steps:
 
@@ -85,6 +89,10 @@ You can see a migration demo video here, and then check out the detailed steps:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zNAfk9Wt0Qo" frameborder="0" allowfullscreen></iframe>
 
+[![IMAGE ALT TEXT HERE](pics/mypicture.png)](https://www.youtube.com/watch?v=b7M8YMLQh-c)
+
+
+
 &nbsp;
 
 1.	If you don't already have an Azure account, you can go to [this website](https://azure.microsoft.com/en-us/free/) and create one.  Once you have logged into the Azure portal, proceed to create an Azure Storage Account of type `blogstorage`.
@@ -93,27 +101,29 @@ You can see a migration demo video here, and then check out the detailed steps:
 
     Then run this command:
     ```Shell/Bash
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
-```
+    rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    ```
 
 3.	Once you have `azcopy` loaded on your system, you will need to log in into your azure account with `azcopy`. Below is the command that you use to do this:
 
     ```Shell/Bash
-/docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy login --tenant-id "XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-```
-    Replace the `tenant-id` above with the `tenant-id` of your MS Azure account.  After you have executed the `azcopy login` command above, you will be asked to open a browser and type in a code that was provided to allow the access.
+    /docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy login --tenant-id "XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    ```
+    
+    Replace the `tenant-id` above with the `tenant-id` of your MS Azure account.  After you have executed the `azcopy login` command above, you will be asked to open a browser and     type in a code that was provided to allow the access.
 
 4.	Next, create a container using the `azcopy` tool.
 
     ```Shell/Bash
-/docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy make "https://salsestorage01.blob.core.windows.net/<DATABASE_NAME>container"
-```
+    /docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy make "https://salsestorage01.blob.core.windows.net/<DATABASE_NAME>container"
+    ```
+    
 5.	Using the MS Azure portal, generate a shared access signature (SAS) and assign to signing key 1 (access key).
 
 6.	Finally, upload the on-premise encrypted backup to the azure storage account using `azcopy`. Be sure to select the database directory name as the root of the directory tree that you want uploaded.
 
     ```Shell/Bash
-/docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy copy '<DATABASE_NAME>_dumpdir/<DATABASE_NAME>' 'https://salsestorage01.blob.core.windows.net/<DATABASE_NAME>container?sp=racwdl&st=2021-02-28T14:19:34Z&se=2022-03-01T22:19:34Z&spr=https&sv=2020-02-10&sr=c&sig=yKCnItSYnfkIb%2BqFzTu7iiP3Saso2zPqY%2F1QtgiEpH8%3D' --recursive
-```
+    /docker/toolkit/microsoft/azcopy_linux_amd64_10.9.0/azcopy copy '<DATABASE_NAME>_dumpdir/<DATABASE_NAME>'   'https://salsestorage01.blob.core.windows.net/<DATABASE_NAME>container?sp=racwdl&st=2021-02-28T14:19:34Z&se=2022-03-01T22:19:34Z&spr=https&sv=2020-02-10&sr=c&sig=yKCnItSYnfkIb%2BqFzTu7iiP3Saso2zPqY%2F1QtgiEpH8%3D' --recursive
+    ```
 
 Replace the full https parameter in the `azcopy` command above with your shared access signature (SAS) created in step 5.
