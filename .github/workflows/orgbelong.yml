@@ -20,7 +20,7 @@ jobs:
         if: steps.is_organization_member.outputs.result == true
         run: echo User Does Not Belong to testorg
       - name: Create Comment TRUE
-        if: steps.is_organization_member.outputs.result == true
+        if: 1=1
         run: echo User Does YES ----- Belong to testorg
       - name: Print Something
         run: echo something to print out
