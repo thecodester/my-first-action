@@ -17,7 +17,11 @@ jobs:
           organization: testorg
           username: ${{ github.event.issue.user.login }}
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Comment
+      - name: Create Comment FALSE
         if: |
           steps.is_organization_member.outputs.result == false
         run: echo User Does Not Belong to testorg
+      - name: Create Comment TRUE
+        if: |
+          steps.is_organization_member.outputs.result == true
+        run: echo User Does YES ----- Belong to testorg
