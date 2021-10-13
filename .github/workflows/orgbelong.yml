@@ -15,10 +15,10 @@ jobs:
         with:
           organization: SAP
           username: ${{ github.event.issue.user.login }}
-          token: ${{ secrets.mytoken }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Comment FALSE
         if: steps.is_organization_member.outputs.result == true
-        run: echo User Does Not Belong to testorg
+        run: echo User BELONGS to testorg
       - name: Create Comment TRUE
         if: 1 == 1
         run: echo User Does YES ----- Belong to testorg
