@@ -20,7 +20,7 @@ jobs:
         if: steps.is_organization_member.outputs.result == true
         run: echo User BELONGS to testorg
       - name: Create Comment TRUE
-        if: 1 == 1
-        run: echo ${{ steps.is_organization_member.outputs.result }}
+        if: steps.is_organization_member.outputs.result == "false"
+        run: echo "The selected color is ${{ steps.is_organization_member.outputs.result }}" 
       - name: Print Something
         run: echo something to print out
