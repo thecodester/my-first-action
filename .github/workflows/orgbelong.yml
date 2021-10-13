@@ -21,6 +21,6 @@ jobs:
         run: echo User BELONGS to testorg
       - name: Create Comment TRUE
         if: 1 == 1
-        run: echo User Does YES ----- Belong to testorg
+        run: echo steps.is_organization_member.outputs.result
       - name: Print Something
         run: echo something to print out
