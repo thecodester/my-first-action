@@ -25,3 +25,5 @@ jobs:
         if: |
           steps.is_organization_member.outputs.result == true
         run: echo User Does YES ----- Belong to testorg
+      - name: Print Something
+        run: echo something to print out
