@@ -25,9 +25,4 @@ jobs:
       - name: Print Something
         run: |
           echo ${{ toJSON(github.event) }}
-          echo "${{ github.event.sender.login }}"         
-      - name: add labels
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          labels: stacked PR
+          echo ${{ github.event.sender.login }}       
