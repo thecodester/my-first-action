@@ -24,7 +24,7 @@ jobs:
         run: echo "The selected color is ${{ steps.is_organization_member.outputs.result }}" 
       - name: Print Something
         run: |
-          echo ${{ github.event.pull_request.sender }}
+          echo ${{ github.event }}
           echo ${{ github.event.pull_request.repository }}
           
       - name: add labels
