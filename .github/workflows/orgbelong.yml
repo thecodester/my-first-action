@@ -24,8 +24,8 @@ jobs:
         run: echo "The selected color is ${{ steps.is_organization_member.outputs.result }}" 
       - name: Print Something
         run: |
-          echo ${{ github.event }}
-          echo ${{ github.event.pull_request.repository }}
+          echo ${{ github.event.issues.assignee }}
+          echo ${{ github.event.issues.action }}
           
       - name: add labels
         uses: actions-ecosystem/action-add-labels@v1
