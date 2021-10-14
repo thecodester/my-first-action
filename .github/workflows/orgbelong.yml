@@ -23,7 +23,7 @@ jobs:
         if: steps.is_organization_member.outputs.result == 'false'
         run: echo "The selected color is ${{ steps.is_organization_member.outputs.result }}" 
       - name: Print Something
-        run: echo something to print out
+        run: echo ${{ github.event.pull_request.sender }}
       - name: add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
