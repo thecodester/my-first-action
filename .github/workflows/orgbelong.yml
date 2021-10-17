@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "${{ toJSON(github.event) }}"
           echo "${{ github.event.sender.login }}"
+          echo "${{ github.event.issue.user.login }}"
       - name: add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
