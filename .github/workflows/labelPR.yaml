@@ -15,11 +15,15 @@ jobs:
         uses: JamesSingleton/is-organization-member@1.0.0
         with:
           organization: SAP
-          username: the-docta
+          username: ${{ github.event.sender.login }}
           token: ${{ secrets.mytoken }}
       - name: If Belong
         if: steps.is_organization_member.outputs.result == 'true'
-        run: echo User BELONGS to testorg
+        run: |
+          echo User BELONGS to testorg
+          gh pr comment https://github.com/thecodester/my-first-action/pull/7 --body "You're one of us!!!!!"
+        env:
+            GITHUB_TOKEN: ${{ secrets.mytoken }}
       - name: If Not Belong - Add Label
         if: steps.is_organization_member.outputs.result == 'false'
         uses: actions-ecosystem/action-add-labels@v1
@@ -46,6 +50,7 @@ jobs:
           echo "${{ toJSON(github.event) }}"
           echo "${{ github.event.sender.login }}"
           echo "${{ github.event.issue.user.login }}"
+          echo "${{ github.event.pr.user.login }}"
       - name: add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
