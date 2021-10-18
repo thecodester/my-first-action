@@ -34,7 +34,7 @@ jobs:
         if: steps.is_organization_member.outputs.result == 'false'
         run: |
           printf "Add this note!" \
-          | gh issue comment 7 --body-file -
+          | gh pr comment 7 --body-file -
       - name: Print Something
         run: |
           echo "${{ toJSON(github.event) }}"
