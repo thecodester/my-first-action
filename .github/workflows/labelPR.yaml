@@ -26,7 +26,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: Submitted by Guest
-          
+      - id: auth_gh
+        name: Authenticate gh to repo
+        run: echo -n ${{ secrets.mytoken }} | gh auth login --with-token
+
       - name: If Not Belong - Add Comment
         if: steps.is_organization_member.outputs.result == 'false'
         run: |
