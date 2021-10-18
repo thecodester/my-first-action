@@ -1,6 +1,9 @@
 name: Label if PR author is from this org
 
-on: pull_request
+on:
+  pull_request_target:
+    types: [labeled]
+  pull_request:
 
 jobs:
   welcome:
