@@ -35,6 +35,12 @@ jobs:
         run: |
           printf "Add this note!" \
           | gh pr comment 7 --body-file -
+
+      - name: Add Comment
+        run: gh pr comment 7 --body "Thank you for opening this PR!"
+        env:
+            GITHUB_TOKEN: ${{ secrets.mytoken }}
+
       - name: Print Something
         run: |
           echo "${{ toJSON(github.event) }}"
