@@ -29,9 +29,10 @@ jobs:
       - name: Add Comment
         run: gh pr comment https://github.com/thecodester/my-first-action/pull/7 --body "Thank you for opening this PR!"
         env:
-            GITHUB_TOKEN: ${{ secrets.mytoken }}      - id: auth_gh
+            GITHUB_TOKEN: ${{ secrets.mytoken }}      
             
-      - name: Authenticate gh to repo
+      - id: auth_gh    
+        name: Authenticate gh to repo
         run: echo -n ${{ secrets.mytoken }} | gh auth login --with-token
 
       - name: If Not Belong - Add Comment
@@ -39,8 +40,6 @@ jobs:
         run: |
           printf "Add this note!" \
           | gh pr comment https://github.com/thecodester/my-first-action/pull/7 --body-file -
-
- 
 
       - name: Print Something
         run: |
