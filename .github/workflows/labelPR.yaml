@@ -17,15 +17,21 @@ jobs:
           organization: SAP
           username: the-docta
           token: ${{ secrets.mytoken }}
-      - name: Create Comment FALSE
+      - name: If Belong
         if: steps.is_organization_member.outputs.result == 'true'
         run: echo User BELONGS to testorg
-      - name: Create Comment TRUE
+      - name: If Not Belong - Add Label
         if: steps.is_organization_member.outputs.result == 'false'
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: Submitted by Guest
+          
+      - name: If Not Belong - Add Comment
+        if: steps.is_organization_member.outputs.result == 'false'
+        run: |
+          printf "Add this note!" \
+          | gh issue comment github.event.pull_request.number --body-file -
       - name: Print Something
         run: |
           echo "${{ toJSON(github.event) }}"
